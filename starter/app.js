@@ -24,7 +24,7 @@ document.getElementById("score-1").textContent = "0";
 document.getElementById("current-0").textContent = "0";
 document.getElementById("current-0").textContent = "0";
 
-document.querySelector(".btn-roll").addEventListener("click", function() {
+document.querySelector(".btn-roll").addEventListener("click", function () {
   // 1 . Random number
   var dice = Math.floor(Math.random() * 6) + 1;
 
@@ -38,23 +38,50 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
     roundScore += dice;
     document.querySelector("#current-" + activePlayer).textContent = roundScore;
   } else {
-    //Next player
-    activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
-    roundScore = 0;
-
-    document.getElementById("current-0").textContent = "0";
-    document.getElementById("current-1").textContent = "0";
-
-    // toggle removes class when its there and adds when its not there
-    document.querySelector(".player-0-panel").classList.toggle("active");
-    document.querySelector(".player-1-panel").classList.toggle("active");
-
-    // document.querySelector(".player-0-panel").classList.remove("active");
-    // document.querySelector(".player-1-panel").classList.add("active");
-
-    document.querySelector(".dice").style.display = "none";
+    //Next Player
+    nextPlayer();
   }
 });
+
+document.querySelector('.btn-hold').addEventListener('click', function () {
+  //Add Current score to Global score
+  scores[activePlayer] += roundScore;
+  //Update the UI
+  document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+  //Check if player won the game
+  if (scores[activePlayer] >= 100) {
+    document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
+    document.querySelector('.dice').style.display = 'none';
+    document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
+    document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+  } else {
+    //Next Player
+    nextPlayer();
+  }
+
+});
+
+function nextPlayer() {
+  //Next player
+  activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
+  roundScore = 0;
+
+  document.getElementById("current-0").textContent = "0";
+  document.getElementById("current-1").textContent = "0";
+
+  // toggle removes class when its there and adds when its not there
+  document.querySelector(".player-0-panel").classList.toggle("active");
+  document.querySelector(".player-1-panel").classList.toggle("active");
+
+  // document.querySelector(".player-0-panel").classList.remove("active");
+  // document.querySelector(".player-1-panel").classList.add("active");
+
+  document.querySelector(".dice").style.display = "none";
+}
+
+
+
+
 
 // document.querySelector("#current-" + activePlayer).textContent = dice;
 /*
@@ -63,4 +90,4 @@ query selector lets You chose items like css
 document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '</em>';
 */
 
-// var x = document.querySelector("#score-0").textContent;
+// var x = document.querySelector("#score-0").textContent
