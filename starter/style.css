@@ -181,3 +181,8 @@ i {
     text-align: center;
     margin-bottom: 5rem;
 }
+
+.score-input #playerWinningScore {
+    display: inline-block;
+    margin-top: 5px;
+}

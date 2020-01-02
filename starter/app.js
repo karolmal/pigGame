@@ -9,7 +9,11 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer, dice, gamePlaying;
+var scores, roundScore, activePlayer, dice, gamePlaying, playerInput;
+function winningScore() {
+  playerInput = document.getElementById("number").value;
+  console.log(playerInput);
+}
 init();
 
 document.querySelector(".btn-roll").addEventListener("click", function() {
