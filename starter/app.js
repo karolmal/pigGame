@@ -10,10 +10,7 @@ GAME RULES:
 */
 
 var scores, roundScore, activePlayer, dice, gamePlaying, playerInput, lastDice;
-function winningScore() {
-  playerInput = document.getElementById("number").value;
-  console.log(playerInput);
-}
+
 init();
 
 document.querySelector(".btn-roll").addEventListener("click", function() {
@@ -52,8 +49,20 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
     //Update the UI
     document.querySelector("#score-" + activePlayer).textContent =
       scores[activePlayer];
+
+    playerInput = document.getElementById("number").value;
+
+    //Undefined, 0, null or '' are coerced to false
+    //Anything else is coerced to true
+    //Player input is the winning number
+    if (playerInput) {
+      var winningScore = playerInput;
+    } else {
+      winningScore = 100;
+    }
+
     //Check if player won the game by getting 100 points or getting amount gotten by input
-    if (scores[activePlayer] >= 100 || scores[activePlayer] >= playerInput) {
+    if (scores[activePlayer] >= winningScore) {
       document.querySelector("#name-" + activePlayer).textContent = "Winner!";
       document.querySelector(".dice").style.display = "none";
       document
