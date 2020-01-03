@@ -168,6 +168,7 @@ i {
     box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
 }
 
+
 .winner {
     background-color: #f7f7f7;
 }
@@ -185,4 +186,12 @@ i {
 .score-input #number {
     font-family: 'lato';
     text-transform: uppercase;
+}
+
+#dice-1 {
+    top: 120px;
+}
+
+#dice-2 {
+    top: 250px;
 }
